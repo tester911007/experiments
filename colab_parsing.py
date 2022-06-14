@@ -66,8 +66,8 @@ def fill_dicrionary(dictionary: dict, filename: str):
 
 def save_excel(dictionary: dict):
     df = pd.DataFrame(dictionary)
-    df = df.drop_duplicates()
     df.columns = columns
+    df = df.drop_duplicates(subset=df.columns.difference(['filename']))
     df.to_excel('ROPC.xlsx', index=False)
     files.download('ROPC.xlsx')
 
